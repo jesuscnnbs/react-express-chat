@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     const recieveMessage = (msg) => {
-      setChat([...chat, msg]);
+      setChat([msg, ...chat]);
     };
 
     socket.on("textMessage", recieveMessage);
@@ -24,11 +24,11 @@ function App() {
     e.preventDefault();
     socket.emit("textMessage", message);
     setChat([
-      ...chat,
       {
         body: message,
         from: "Me",
       },
+      ...chat,
     ]);
     setMessage("");
   };
